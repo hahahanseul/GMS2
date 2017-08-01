@@ -10,17 +10,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.smartcardio.ResponseAPDU;
 
+import com.gms.web.constant.Action;
 import com.gms.web.util.DispatcherServlet;
 
 @WebServlet("/member.do")
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DispatcherServlet.send(request, response);
+		System.out.println("MemberController Get 진입");
+		switch (request.getParameter("action")) {
+		case Action.MOVE:
+			DispatcherServlet.send(request, response);
+			break;
+
+		case "":
+			break;
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
-		System.out.println("Do Post 진입");
+		System.out.println("MemberController Post 진입");
 	}
 
 }

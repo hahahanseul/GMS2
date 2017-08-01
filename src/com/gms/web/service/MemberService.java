@@ -12,5 +12,6 @@ public interface MemberService {
 	public String countMembers();
 	public String modify(MemberBean member);
 	public String remove(String id);
+	public String login(MemberBean member);
 	//MemberBean[] list=new MemberBean[4];
 }

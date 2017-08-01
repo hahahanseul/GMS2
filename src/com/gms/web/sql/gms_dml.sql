@@ -5,7 +5,7 @@ VALUES('song2','송무명','1','170215-4821305',SYSDATE)
 
 SELECT * FROM Member;
 SELECT * FROM Member WHERE id = 'hong';
-SELECT * FROM Member WHERE name = '홍길동';
+SELECT * FROM Member WHERE name = '이양반' ORDER BY ssn DESC;
 SELECT COUNT(*) AS count FROM Member;
 UPDATE Member SET pw = '2' WHERE id = 'hong';
 DELETE FROM Member WHERE id='hansuru';
@@ -48,5 +48,16 @@ VALUES (article_seq.nextval, 'hanseul', '바람이분다능', '구하지 그들�
 INSERT INTO Board(article_seq, id, title, content, hitcount, regdate) VALUES (article_seq.nextval,?,?,?,0,SYSDATE)
 
 SELECT * FROM Board;
-
 DELETE FROM Board WHERE article_seq='1011'
+
+SELECT DISTINCT id 
+FROM Board WHERE id LIKE '%h%';
+
+SELECT SUM(article_seq)
+FROM Board;
+
+
+SELECT * FROM Member m, Board b, Grade g
+WHERE m.id = b.id AND m.id = g.id;
+
+

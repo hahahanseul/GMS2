@@ -73,12 +73,13 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public MemberBean selectById(String id) {
-		MemberBean member = new MemberBean();
+		MemberBean member = null;
 		try {
 			PreparedStatement pstmt= DatabaseFactory.createDatabase(Vendor.ORACLE, DB.USERNAME, DB.PASSWORD).getConnection().prepareStatement(SQL.MEMBER_FINDBYID);
 			pstmt.setString(1, id);
 			ResultSet rs = pstmt.executeQuery();
 			if(rs.next()) {
+				member=new MemberBean();
 				member.setId(rs.getString(DB.MEMBER_ID));
 				member.setName(rs.getString(DB.MEMBER_NAME));
 				member.setPw(rs.getString(DB.MEMBER_PASS));

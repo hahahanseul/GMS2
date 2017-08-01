@@ -1,6 +1,9 @@
 package com.gms.web.service;
 
 import java.util.List;
+
+import javax.swing.plaf.synth.SynthSeparatorUI;
+
 import com.gms.web.dao.MemberDAOImpl;
 import com.gms.web.domain.MemberBean;
 import com.gms.web.service.MemberService;
@@ -41,5 +44,12 @@ public class MemberServiceImpl implements MemberService {
 		String msg="";
 		return msg;
 		
+	}
+	@Override
+	public String login(MemberBean member) {
+		MemberBean temp = findById(member.getId());
+		return (temp != null)? ((member.getPw().equals(temp.getPw())) ?  "main" : "login_fail") : "join";
+		
+	
 	}
 }
