@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="member_head.jsp" %>
+<jsp:include page="../member/member_head.jsp" />
 <div id="container">
 	<div id="member_box">
 		<div id="member_detail_title">회원정보 상세조회 </div>
@@ -50,7 +50,7 @@
 </div>
 <script>
 function cancel(){
-	location.href="<%=request.getContextPath()%>/member/member_list.jsp?action=list";
+	location.href="${ctx}/WEB-INFO/view/member/member_list.jsp?action=list";
 }
 </script>
-<%@ include file="../common/footer.jsp" %>
+<jsp:include page="../common/footer.jsp" />

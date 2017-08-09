@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="member_head.jsp" %>
+<jsp:include page="../member/member_head.jsp" />
 <div id="container">
 <form id="member_search_box" action="<%=request.getContextPath()%>/member/service_search.jsp" method="get">
 	검색조건<select name="option">
@@ -11,4 +11,4 @@
 	<input id="clear_btn" type="reset" value="취소"/>
 </form>
 </div>
-<%@ include file="../common/footer.jsp" %>
+<jsp:include page="../common/footer.jsp" />

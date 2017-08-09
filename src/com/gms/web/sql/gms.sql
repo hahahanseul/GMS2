@@ -147,7 +147,7 @@ ALTER TABLE GRADE
 RENAME COLUMN id TO member_id; 
 --DML
 SELECT * FROM Grade;
---member_id를 입력하면 평균점수를 반환하는 sql
+--member_id를 입력하면 평균점수를 반환하는 sql (equijoin)
 SELECT avg(SCORE)
 FROM(SELECT DISTINCT
 m.member_id id,m.name name,mj.title as major,g.SCORE,sj.title AS subject, g.exam_date
@@ -158,18 +158,46 @@ WHERE
     and sj.MAJOR_ID = mj.MAJOR_ID
     and sj.subj_id = g.subj_id) t
     WHERE t.id='hong';
-
+-- member_id를 입력하면 평균점수 반환하는 sql (inner join)
 SELECT avg(SCORE)
 FROM(SELECT
-		m.member_id id,m.name name,g.SCORE score, g.exam_date exam_date
+		m.member_id id,g.SCORE score
 	FROM grade g
 		inner join Subject s on g.subj_id=s.subj_id
 		inner join Member m on m.member_id=g.member_id
 	) t
 WHERE t.id='hong';
-    
+-- id별로 평균점수 뽑아서 1,2,3등 나오게 하는 것
+SELECT t.id id, avg(SCORE) avg
+FROM(SELECT
+		m.member_id id,g.SCORE score
+	FROM grade g
+		inner join Subject s on g.subj_id=s.subj_id
+		inner join Member m on m.member_id=g.member_id
+	) t
+group by t.id
+having avg(score)>=50
+order by avg(score) desc;
+
+-- 1,2,3등 순으로 뽑은 뒤에 조회결과의 순번(ROWNUM) 붙이는 SQL
+SELECT ROWNUM NO, t2.*
+FROM (SELECT t.id id, avg(SCORE) avg
+    FROM (SELECT
+            m.member_id id,g.SCORE score
+        FROM grade g
+            inner join Subject s on g.subj_id=s.subj_id
+            inner join Member m on m.member_id=g.member_id
+        ) t
+    group by t.id
+    order by avg(score) desc
+) t2
+WHERE ROWNUM < 4;
 INSERT INTO Grade(grade_seq,score,exam_date,subj_id,member_id)
 VALUES (seq.nextval,'90','2017-03','java','hong');
+
+
+
+
 
 --*********************************
 --[7] BOARD_TAB

@@ -1,6 +1,8 @@
 package com.gms.web.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.plaf.synth.SynthSeparatorUI;
 
@@ -46,10 +48,12 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 	@Override
-	public String login(MemberBean member) {
-		MemberBean temp = findById(member.getId());
-		return (temp != null)? ((member.getPw().equals(temp.getPw())) ?  "main" : "login_fail") : "join";
-		
-	
+	public Map<String,Object> login(MemberBean member) {
+		Map<String,Object> map = new HashMap<>();
+		MemberBean m = findById(member.getId());
+		String page = (m != null) ?( (member.getPw().equals(m.getPw())) ? "main" :"login_fail") :  "join";
+		map.put("page", page);
+		map.put("user", member);
+		return map;
 	}
 }

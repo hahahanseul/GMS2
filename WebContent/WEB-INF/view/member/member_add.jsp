@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="member_head.jsp" %>
+<jsp:include page="../member/member_head.jsp" />
 	<div id="container">
 		<div id="sub_title">회원 추가 </div>
-		<form id="join_form" action="<%=request.getContextPath()%>/member/service_add.jsp" method="get">
+		<form id="join_form" action="${ctx}/WEB-INFO/view/member/service_add.jsp" method="get">
 			<fieldset>
 			<legend>join information</legend>
 			<span id="join_id">ID</span>
@@ -38,4 +38,4 @@
 		</fieldset>
 		</form>
 	</div>
-<%@ include file="../common/footer.jsp" %>
+<jsp:include page="../common/footer.jsp" />

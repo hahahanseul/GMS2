@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="board_head.jsp" %>
+<jsp:include page="../board/board_head.jsp"/>
 	<div id="container">
 		<form action="">
 			<textarea rows="20" cols="50">
@@ -9,4 +9,4 @@
 			<input type="submit"></input>
 		</form>
 	</div>
-<%@ include file="../common/footer.jsp" %>
+<jsp:include page="../common/footer.jsp" />

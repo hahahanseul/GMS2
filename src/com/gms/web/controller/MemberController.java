@@ -12,6 +12,7 @@ import javax.smartcardio.ResponseAPDU;
 
 import com.gms.web.constant.Action;
 import com.gms.web.util.DispatcherServlet;
+import com.gms.web.util.Separator;
 
 @WebServlet("/member.do")
 public class MemberController extends HttpServlet {
@@ -20,6 +21,7 @@ public class MemberController extends HttpServlet {
 		System.out.println("MemberController Get 진입");
 		switch (request.getParameter("action")) {
 		case Action.MOVE:
+			Separator.init(request);
 			DispatcherServlet.send(request, response);
 			break;
 

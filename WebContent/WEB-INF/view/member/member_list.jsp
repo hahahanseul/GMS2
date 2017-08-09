@@ -1,7 +1,7 @@
 <%@page import="java.util.Set"%>
 <%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="member_head.jsp" %>
+<jsp:include page="../member/member_head.jsp" />
 <div id="container">
 	<div id="sub_title">회원 목록 </div>
 	<table id="member_tab">
@@ -31,4 +31,4 @@
 			</tr>	
 	</table>
 	</div>
-<%@ include file="../common/footer.jsp" %>
+<jsp:include page="../common/footer.jsp" />

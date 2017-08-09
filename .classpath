@@ -13,10 +13,9 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry exported="true" kind="lib" path="C:/oraclexe/app/oracle/product/11.2.0/server/jdbc/lib/ojdbc6.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/hanbit/JSPProjects/jars/jstl.jar"/>
 	<classpathentry kind="lib" path="C:/Users/hanbit/JSPProjects/jars/ojdbc6.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/hanbit/JSPProjects/jars/servlet-api.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/hanbit/JSPProjects/jars/standard.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/hanbit/JSPProjects/jars/jstl-1.2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
