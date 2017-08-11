@@ -20,7 +20,7 @@ import com.gms.web.util.Separator;
 @WebServlet("/common.do")
 public class CommonController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("CommonController Get진입");
 		HttpSession session = request.getSession();
 		MemberBean member = new MemberBean();
@@ -32,8 +32,8 @@ public class CommonController extends HttpServlet {
 		case Action.LOGIN:
 			MemberService service = MemberServiceImpl.getInstance();
 			MemberBean m=new MemberBean();
-			m.setId(request.getParameter("id"));
-			m.setPw(request.getParameter("pw"));
+			m.setId(request.getParameter("login_id"));
+			m.setPw(request.getParameter("login_pw"));
 			Map<String,Object> map = service.login(m);
 			if(map.get("page").equals("main")) {
 				session.setAttribute("user", map.get("user"));
@@ -42,9 +42,10 @@ public class CommonController extends HttpServlet {
 			Separator.cmd.process();
 			DispatcherServlet.send(request, response);
 			break;
+		case Action.LOGOUT:
+			session.invalidate();
+			DispatcherServlet.send(request, response);
+			break;
 		}
-	}
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("CommonController Post진입");
 	}
 }

@@ -24,7 +24,6 @@ public class MemberController extends HttpServlet {
 			Separator.init(request);
 			DispatcherServlet.send(request, response);
 			break;
-
 		case "":
 			break;
 		}

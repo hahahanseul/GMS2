@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<jsp:include page="../member/member_head.jsp" />
+<jsp:include page="../common/common_head.jsp" />
 <div id="container">
 	<div id="member_box">
 		<div id="member_detail_title">회원정보 상세조회 </div>

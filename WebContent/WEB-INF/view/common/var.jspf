@@ -3,5 +3,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fn"%>
 <c:set var = "ctx" value="<%=application.getContextPath()%>"/>
 <c:set var = "img" value="${ctx}/resources/img"/>
-<c:set var = "css" value="${ctx}/resources/css%>"/>
-<c:set var = "js" value="${ctx}/resources/js%>"/>
+<c:set var = "css" value="${ctx}/resources/css"/>
+<c:set var = "js" value="${ctx}/resources/js"/>

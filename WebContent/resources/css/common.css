@@ -22,7 +22,9 @@ table{border-collapse: collapse;}
 .gms-widht-10pro{width: 10%;}
 .gms-widht-25pro{width: 25%;}
 .gms-widht-35pro{width: 35%;}
-
+.login-member{position:absolute; right:20px; top:15px; color:white;}
+.container-fluid{position: relative}
+#logout-btn{color: white;}
 /*background-color*/
 .gms-background-red{background-color: red;}
 .gms-background-blue{background-color: blue;}
@@ -35,8 +37,6 @@ table{border-collapse: collapse;}
 a:link {color: black;}
 
 /* visited link */
-a:visited {color: green;}
-
 /* mouse over link */
 a:hover {color: hotpink;}
 

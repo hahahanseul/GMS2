@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<jsp:include page="../member/member_head.jsp" />
+<jsp:include page="../common/common_head.jsp" />
 	<div id="container">
 		<div id="sub_title">회원 추가 </div>
 		<form id="join_form" action="${ctx}/WEB-INFO/view/member/service_add.jsp" method="get">

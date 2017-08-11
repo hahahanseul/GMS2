@@ -1,7 +1,7 @@
 <%@page import="java.util.Set"%>
 <%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<jsp:include page="../member/member_head.jsp" />
+<jsp:include page="../common/common_head.jsp" />
 <div id="container">
 	<div id="sub_title">회원 목록 </div>
 	<table id="member_tab">

@@ -4,7 +4,6 @@ import com.gms.web.constant.*;
 
 public class Command implements Commandable{
 	protected String dir, action, page, view;
-	
 	public String getView() {
 		return view;
 	}

@@ -53,7 +53,7 @@ public class MemberServiceImpl implements MemberService {
 		MemberBean m = findById(member.getId());
 		String page = (m != null) ?( (member.getPw().equals(m.getPw())) ? "main" :"login_fail") :  "join";
 		map.put("page", page);
-		map.put("user", member);
+		map.put("user", m);
 		return map;
 	}
 }
