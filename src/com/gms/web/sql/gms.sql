@@ -28,6 +28,8 @@ NOCYCLE;
 	title VARCHAR2(10),
 	PRIMARY KEY(major_id)
 );
+ALTER TABLE major ADD subj_id varchar2(10);
+select* from major;
 --DML
 
 --*********************************
@@ -48,7 +50,7 @@ CREATE TABLE Subject(
 INSERT INTO Subject(subj_id,title,major_id)
 VALUES('','','');
 
-
+select*from subject;
 --*********************************
 --[3] MEMBER_TAB
 --2017/08/02
@@ -231,3 +233,21 @@ FROM Board WHERE member_id LIKE '%h%';
 
 SELECT SUM(article_seq)
 FROM Board;
+
+
+
+create view student (num, id, name, ssn, phone, email, title, regdate)
+as
+select rownum, t.id, t.name, t.ssn, t.phone, t.email,t.title, t.regdate
+from (
+    select a.member_id id, a.name name, rpad(substr(a.ssn,1,8),14,'*') ssn, a.phone phone, a.email email, listagg(s.title,',') within group(order by s.title) title, to_char(a.regdate, 'yyyy-MM-dd') regdate
+    from member a
+        left outer join major m on a.member_id = m.member_id
+        left join subject s on m.subj_id = s.subj_id
+    group by a.member_id,a.name, a.ssn, a.phone, a.email,a.regdate  
+    order by regdate
+)t
+order by rownum desc;
+
+drop view Student;
+

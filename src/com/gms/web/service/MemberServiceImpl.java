@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import com.gms.web.dao.MemberDAOImpl;
+import com.gms.web.domain.MajorBean;
 import com.gms.web.domain.MemberBean;
 import com.gms.web.service.MemberService;
 
@@ -16,11 +17,18 @@ public class MemberServiceImpl implements MemberService {
 		}
 	private MemberServiceImpl() {}
 	@Override
-	public String addMember(MemberBean member) {
-		return (MemberDAOImpl.getInstance().insert(member).equals("1"))?"등록성공":"실패";
+	public String addMember(Map<String, Object> map) {
+		System.out.println("Member Service 진입");
+		MemberBean m = (MemberBean)map.get("member");
+		System.out.println("넘어온 회원의 이름:" + m.toString());
+		@SuppressWarnings("unchecked")
+		List<MajorBean> list = (List<MajorBean>)map.get("major");
+		System.out.println("넘어온 수강과목:" + list);
+		MemberDAOImpl.getInstance().insert(map);
+		return MemberDAOImpl.getInstance().insert(map);
 	}
 	@Override
-	public List<MemberBean> getMembers() {
+	public List<?> getMembers() {
 		return MemberDAOImpl.getInstance().selectAll();
 	}
 	@Override
@@ -28,7 +36,7 @@ public class MemberServiceImpl implements MemberService {
 		return String.valueOf(MemberDAOImpl.getInstance().countMembers());
 	}
 	@Override
-	public List<MemberBean> findByNames(String name) {
+	public List<?> findByNames(String name) {
 		return MemberDAOImpl.getInstance().selectByNames(name);
 	}
 	@Override

@@ -24,7 +24,7 @@ table{border-collapse: collapse;}
 .gms-widht-35pro{width: 35%;}
 .login-member{position:absolute; right:20px; top:15px; color:white;}
 .container-fluid{position: relative}
-#logout-btn{color: white;}
+#logout{color: white;}
 /*background-color*/
 .gms-background-red{background-color: red;}
 .gms-background-blue{background-color: blue;}

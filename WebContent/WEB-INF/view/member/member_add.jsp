@@ -2,21 +2,21 @@
 <jsp:include page="../common/common_head.jsp" />
 	<div id="container">
 		<div id="sub_title">회원 추가 </div>
-		<form id="join_form" action="${ctx}/WEB-INFO/view/member/service_add.jsp" method="get">
+		<form id="join_form" onsubmit="memberAdd()">
 			<fieldset>
 			<legend>join information</legend>
-			<span id="join_id">ID</span>
-			<input type="text" name="id" placeholder="아이디"/>
-			<span id="join_name">NAME</span>
-			<input type="text" name="name" placeholder="이름"/>
-			<span id="join_pass">PASSWORD</span>
-			<input type="password" name="pw" placeholder="비밀번호" /><br />
-			<span id="join_birth">생년월일</span>
-			<input type="date" name="birthday" placeholder="yyyy/mm/dd"/><br /><br>
+			<span id="join_id_txt">ID</span>
+			<input id="join_id" type="text" name="join_id" placeholder="아이디"/>
+			<span id="join_name_txt">NAME</span>
+			<input id="join_name" type="text" name="join_name" placeholder="이름" value="이길동"/>
+			<span id="join_pw_txt">PASSWORD</span>
+			<input id="join_pw" type="password" name="join_pw" placeholder="비밀번호"  value="1"/><br />
+			<span id="join_birth_txt">생년월일</span>
+			<input id="join_birth" type="text" name="join_birth" value="2000.05.05"/><br /><br>
 	 		<input type="radio" name="gender" value="여성" checked> 여성
 			<input type="radio" name="gender" value="남성"> 남성<br>
-			<span id="join_email">email</span><input type="email" name="email" />
-			<span id="join_phone">phone</span><input type="text" name="phone" />
+			<span id="join_email_txt">email</span><input id="join_email" type="email" name="join_email" value="leegd@test.com"/>
+			<span id="join_phone_txt">phone</span><input id="join_phone" type="text" name="join_phone" value="010-0000-0000" />
 			<br>
 			<h3>전공</h3>
 			<select name="major">
@@ -35,7 +35,18 @@
 			<input type="checkbox" name="subject" value="python"/>파이썬 <br />
 			<input id="join_yes_btn" type="submit" value="제출"/>
 			<input id="join_no_btn" type="reset" value="취소"/>
+			<input type="hidden" name="action" value="join"/>
+			<input type="hidden" name="page" value="main"/>
 		</fieldset>
 		</form>
 	</div>
+<script>
+function memberAdd(){
+	var form = getElementById('join_form');
+	form.setAttribute('action', '${ctx}/member.do');
+	form.setAttribute('method', 'post');
+	form.submit();
+	return true;
+}
+</script>
 <jsp:include page="../common/footer.jsp" />

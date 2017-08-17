@@ -43,7 +43,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 				article = new ArticleBean();
 				article.setArticleSeq(Integer.parseInt(rs.getString(DB.BOARD_SEQ)));
 				article.setId(rs.getString(DB.BOARD_ID));
-				article.setTitle(rs.getString(DB.BOARD_TITLE));
+				article.setTitle(rs.getString(DB.TITLE));
 				article.setContent(rs.getString(DB.BOARD_CONTENT));
 				article.setRegdate(rs.getString(DB.BOARD_ID));
 				article.setId(rs.getString(DB.BOARD_REGDATE));
@@ -69,7 +69,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 				article = new ArticleBean();
 				article.setArticleSeq(Integer.parseInt(rs.getString(DB.BOARD_SEQ)));
 				article.setId(rs.getString(DB.BOARD_ID));
-				article.setTitle(rs.getString(DB.BOARD_TITLE));
+				article.setTitle(rs.getString(DB.TITLE));
 				article.setContent(rs.getString(DB.BOARD_CONTENT));
 				article.setRegdate(rs.getString(DB.BOARD_ID));
 				article.setId(rs.getString(DB.BOARD_REGDATE));
@@ -93,7 +93,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 			if(rs.next()) {
 				article.setArticleSeq(Integer.parseInt(rs.getString(DB.BOARD_SEQ)));
 				article.setId(rs.getString(DB.BOARD_ID));
-				article.setTitle(rs.getString(DB.BOARD_TITLE));
+				article.setTitle(rs.getString(DB.TITLE));
 				article.setContent(rs.getString(DB.BOARD_CONTENT));
 				article.setRegdate(rs.getString(DB.BOARD_ID));
 				article.setId(rs.getString(DB.BOARD_REGDATE));

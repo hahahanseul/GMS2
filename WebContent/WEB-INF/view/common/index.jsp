@@ -39,22 +39,22 @@
 		</div>
 	</footer>
 <script type="text/javascript">
-	function loginAlert(){
-		var input_id=document.getElementById('login_id').value;
-		var input_pass=document.getElementById('login_pw').value;
-		if(input_id === ""){
-			alert('ID구다사이');
-			return false;
-		}
-		if(input_pass === ""){
-			alert('password구다사이');
-			return false;
-		}
-		var form = document.getElementById('login_form');
-		form.action="${ctx}/common.do";
-		form.method="post";
-		return true;
+function loginAlert(){
+	var input_id=document.getElementById('login_id').value;
+	var input_pass=document.getElementById('login_pw').value;
+	if(input_id === ""){
+		alert('ID구다사이');
+		return false;
 	}
+	if(input_pass === ""){
+		alert('password구다사이');
+		return false;
+	}
+	var form = document.getElementById('login_form');
+	form.action="${ctx}/common.do";
+	form.method="post";
+	return true;
+}
 </script>
 </body>
 </html>

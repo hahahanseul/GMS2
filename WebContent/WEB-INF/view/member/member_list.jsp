@@ -12,23 +12,24 @@
 			<th>생년월일</th>
 			<th>전화번호</th>
 			<th>이메일</th>
-			<th>전 공</th>
-			<th>학 점</th>
+			<th>수강과목</th>
 			<th>등록일</th>
 			<th>수정/삭제</th> 
 		</tr>
+			<c:forEach var="i" items="${requestScope.list}">
 			<tr id="member_menu">
-				<td></td>		
-				<td></td>
-				<td><a href="member_detail.jsp?id="></a></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td>A</td>
-				<td></td>
-				<td><a href="member_update.jsp?id=">수정</a>/<a href="service_delete.jsp?id=">삭제</a></td> 
+				<td>${i.num}</td>
+				<td>${i.id}</td>
+				<td>${i.name}</td>
+				<td>${i.ssn}</td>
+				<td>${i.phone}</td>
+				<td>${i.email}</td>
+				<td>${i.title}</td>
+				<td>${i.regdate}</td>
+				<td>수정/삭제</td> 
 			</tr>	
+			</c:forEach>
+			
 	</table>
 	</div>
 <jsp:include page="../common/footer.jsp" />
