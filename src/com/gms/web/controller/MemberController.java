@@ -72,7 +72,13 @@ public class MemberController extends HttpServlet {
 			 @SuppressWarnings("unchecked") 
 			 List<StudentBean> memberList=( List<StudentBean>)service.getMembers();
 			 System.out.println("DB에서 가져온 memberList" + memberList);
+			 request.setAttribute("pageNumber",request.getParameter("pageNumber"));
 			 request.setAttribute("list", memberList);
+			 request.setAttribute("prevBlock", "0");
+			 request.setAttribute("startPage", "1");
+			 int theNumberOfPages=( memberList.size()%5!=0)? memberList.size()/5+1:memberList.size()/5;
+			 request.setAttribute("theNumberOfPages", theNumberOfPages);
+			 request.setAttribute("endPage", String.valueOf(theNumberOfPages));
 			DispatcherServlet.send(request, response);
 			break;
 		}

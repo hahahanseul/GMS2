@@ -84,7 +84,6 @@ public class MemberDAOImpl implements MemberDAO {
 				stud.setRegdate(rs.getString(DB.MEMBER_REGDATE));
 				stud.setTitle(rs.getString(DB.TITLE));
 				list.add(stud);
-				System.out.println("가져오긴하니" + stud);
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

@@ -29,7 +29,36 @@
 				<td>수정/삭제</td> 
 			</tr>	
 			</c:forEach>
-			
 	</table>
+	<nav aria-label="Page navigation" style="width:400px;margin:0 auto">
+	  <ul class="pagination">
+	  	<c:if test="${requestScope.prevBlock gt 0}">
+	  	 <li><a href="#"><span class="glyphicon glyphicon-step-backward"></span></a></li>
+	   	 <li>
+	      <a href="#" aria-label="Previous">
+	        <span aria-hidden="true">&laquo;</span>
+	      </a>
+	    </li>
+	  	</c:if>
+	    <c:forEach varStatus="i" begin="${requestScope.startPage}" end="${requestScope.endPage}" step="1" >
+    	    <c:choose>
+    	    	<c:when test="${i.index eq requestScope.pageNumber}">
+    	    	 	<li class="active"><a href="#">${i.index}</a></li>
+    	    	</c:when>
+    	    	<c:otherwise>
+    	    	 	<li><a onclick="list('member','member_list',${i.index})" href="#">${i.index}</a></li>
+    	    	</c:otherwise>
+    	    </c:choose>
+	    </c:forEach>
+      	<c:if test="${requestScope.nextBlock le requestScope.theNumberOfPages}">
+	    <li>
+	      <a href="#" aria-label="Next">
+	        <span aria-hidden="true">&raquo;</span>
+	      </a>
+	    </li>
+	     <li><a href="#"><span class="glyphicon glyphicon-step-forward"></span></a></li>
+	     </c:if>
+	  </ul>
+	</nav>
 	</div>
 <jsp:include page="../common/footer.jsp" />

@@ -59,21 +59,21 @@ function navbarLoad(){
 	var u3c=u3.children;
 
 	u1c[0].setAttribute("onclick","moveTo('member','member_add')");
-	u1c[1].setAttribute("onclick","list('member','member_list')");
+	u1c[1].setAttribute("onclick","list('member','member_list','1')");
 	u1c[2].setAttribute("onclick","moveTo('member','member_search')");
 	u1c[3].setAttribute("role","separator");
 	u1c[3].setAttribute("class","divider");
 	u1c[4].setAttribute("onclick","deleteTarget('member')");
 
 	u2c[0].setAttribute("onclick","moveTo('grade','grade_add')");
-	u2c[1].setAttribute("onclick","list('grade','grade_list')");
+	u2c[1].setAttribute("onclick","list('grade','grade_list','1')");
 	u2c[2].setAttribute("onclick","moveTo('grade','grade_detail')");
 	u2c[3].setAttribute("role","separator");
 	u2c[3].setAttribute("class","divider");
 	u2c[4].setAttribute("onclick","deleteTarget('grade')");
 
 	u3c[0].setAttribute("onclick","moveTo('board','board_write')");
-	u3c[1].setAttribute("onclick","list('board','board_list')");
+	u3c[1].setAttribute("onclick","list('board','board_list','1')");
 	u3c[2].setAttribute("onclick","moveTo('board','board_detail')");
 	u3c[3].setAttribute("role","separator");
 	u3c[3].setAttribute("class","divider");
@@ -91,8 +91,8 @@ function moveTo(dir, page){
 function deleteTarget(dir){
 	prompt(dir +'의 ID는?');
 }
-function list(dir,page){
-	location.href="${ctx}/"+dir+".do?action=list&page="+page;
+function list(dir,page,pageNumber){
+	location.href="${ctx}/"+dir+".do?action=list&page="+page+"&pageNumber=" + pageNumber;
 }
 function mainLoad(){
 	var u1=document.getElementById("main_ul_stu");
@@ -115,19 +115,19 @@ function mainLoad(){
 		u3c[i].setAttribute("class","list-group-item");
 	}
 	u1c[0].setAttribute("onclick","moveTo('member','member_add')");
-	u1c[1].setAttribute("onclick","list('member','member_list')");
+	u1c[1].setAttribute("onclick","list('member','member_list','1')");
 	u1c[2].setAttribute("onclick","moveTo('member','member_detail')");
 	u1c[3].setAttribute("onclick","moveTo('member','member_search')");
 	u1c[4].setAttribute("onclick","deleteTarget('member')");
 
 	u2c[0].setAttribute("onclick","moveTo('grade','grade_add')");
-	u2c[1].setAttribute("onclick","list('grade','grade_list')");
+	u2c[1].setAttribute("onclick","list('grade','grade_list','1')");
 	u2c[2].setAttribute("onclick","moveTo('grade','grade_detail')");
 	u2c[3].setAttribute("onclick","moveTo('grade','grade_search')");
 	u2c[4].setAttribute("onclick","deleteTarget('grade')");
 
 	u3c[0].setAttribute("onclick","moveTo('board','board_write')");
-	u3c[1].setAttribute("onclick","list('board','board_list')");
+	u3c[1].setAttribute("onclick","list('board','board_list','1')");
 	u3c[2].setAttribute("onclick","moveTo('board','board_detail')");
 	u3c[3].setAttribute("onclick","moveTo('board','board_update')");
 	u3c[4].setAttribute("onclick","deleteTarget('board')");
