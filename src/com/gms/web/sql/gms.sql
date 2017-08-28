@@ -251,3 +251,27 @@ order by rownum desc;
 
 drop view Student;
 
+SELECT t.*
+from(select rownum rnum, s.* from student s)t where t.rnum between 1 and 5;
+
+SELECT t2.*
+from(select rownum seq, t.* 
+	from (select * 
+			from student 
+			order by num desc)t
+			)t2 
+where t2.seq between 1 and 5;
+
+
+SELECT t.* 
+ FROM (SELECT ROWNUM rnum, s.* 
+ 	FROM Student s)t 
+ WHERE t.rnum BETWEEN 5 AND 10;
+ 
+SELECT t2.*
+FROM (SELECT ROWNUM seq, t.*
+	FROM(SELECT *
+	FROM student
+	WHERE name LIKE '%홍%'
+	ORDER BY num DESC) t)t2
+WHERE t2.seq BETWEEN 1 AND 5;

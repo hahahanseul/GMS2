@@ -17,5 +17,4 @@
 	<h1>Grade Management System</h1>
 </div>
 	</header>
-	<hr/>
 	

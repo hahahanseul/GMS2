@@ -17,15 +17,15 @@ import com.gms.web.service.MemberServiceImpl;
 import com.gms.web.util.DispatcherServlet;
 import com.gms.web.util.Separator;
 
-@WebServlet("/common.do")
+@WebServlet({"/home.do","/common.do"})
 public class CommonController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("CommonController Get진입");
+		System.out.println("CommonController 진입");
 		HttpSession session = request.getSession();
 		MemberBean member = new MemberBean();
 		Separator.init(request);
-		switch (request.getParameter(Action.CMD)) {
+		switch (Separator.cmd.getAction()) {
 		case Action.MOVE:
 			DispatcherServlet.send(request, response);
 			break;

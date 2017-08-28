@@ -12,31 +12,41 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.gms.web.command.Command;
 import com.gms.web.constant.Action;
 import com.gms.web.domain.MajorBean;
 import com.gms.web.domain.MemberBean;
 import com.gms.web.domain.StudentBean;
+import com.gms.web.proxy.PageProxy;
 import com.gms.web.service.MemberService;
 import com.gms.web.service.MemberServiceImpl;
+import com.gms.web.proxy.BlockHandler;
 import com.gms.web.util.DispatcherServlet;
+import com.gms.web.proxy.PageHandler;
 import com.gms.web.util.ParamsIterator;
 import com.gms.web.util.Separator;
 
 @WebServlet("/member.do")
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	@SuppressWarnings("unchecked")
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("MemberController 진입");
 		Separator.init(request);
 		MemberBean member = new MemberBean();
 		MemberService service=MemberServiceImpl.getInstance();
-		switch (request.getParameter("action")) {
+		Map<?,?> map = new HashMap<>();
+		PageProxy pxy = new PageProxy(request);
+		Command cmd = new Command();
+		pxy.setPageSize(5);
+		pxy.setBlockSize(5);
+		switch (Separator.cmd.getAction()) {
 		case Action.MOVE:
 			DispatcherServlet.send(request, response);
 			break;
 		case Action.JOIN:
 			System.out.println("=== join 진입 ===");	
-			Map<?,?> map=ParamsIterator.execute(request);
+			map=ParamsIterator.execute(request);
 			member.setId((String)map.get("join_id"));
 			member.setPw((String)map.get("join_pw"));
 			member.setName((String)map.get("join_name"));
@@ -61,7 +71,7 @@ public class MemberController extends HttpServlet {
 			tempMap.put("member", member);
 			tempMap.put("major", list);
 			String rs=service.addMember(tempMap);
-			Separator.cmd.setDirectory("common");
+			Separator.cmd.setDir("common");
 			Separator.cmd.process();
 			System.out.println("컨트롤러 insert결과:" + rs);
 			DispatcherServlet.send(request, response);
@@ -69,16 +79,35 @@ public class MemberController extends HttpServlet {
 		default:System.out.println("FAIL..");break;
 		case Action.LIST:
 			System.out.println("멤버리스트 진입");
-			 @SuppressWarnings("unchecked") 
-			 List<StudentBean> memberList=( List<StudentBean>)service.getMembers();
-			 System.out.println("DB에서 가져온 memberList" + memberList);
-			 request.setAttribute("pageNumber",request.getParameter("pageNumber"));
-			 request.setAttribute("list", memberList);
-			 request.setAttribute("prevBlock", "0");
-			 request.setAttribute("startPage", "1");
-			 int theNumberOfPages=( memberList.size()%5!=0)? memberList.size()/5+1:memberList.size()/5;
-			 request.setAttribute("theNumberOfPages", theNumberOfPages);
-			 request.setAttribute("endPage", String.valueOf(theNumberOfPages));
+			pxy.setTheNumberOfRows(Integer.parseInt(service.countMembers(cmd)));
+			pxy.setPageNumber(Integer.parseInt(request.getParameter("pageNumber")));
+			pxy.execute(BlockHandler.attr(pxy),service.list(PageHandler.attr(pxy)));
+			DispatcherServlet.send(request, response);
+			break;
+		case Action.SEARCH:
+			map=ParamsIterator.execute(request);
+			pxy.setTheNumberOfRows(Integer.parseInt(service.countMembers(cmd)));
+			cmd=PageHandler.attr(pxy);
+			cmd.setColumn("name");
+			cmd.setSearch(String.valueOf(map.get("search")));
+			request.setAttribute("list", service.findByName(cmd));
+			DispatcherServlet.send(request, response);
+			break;
+		case Action.UPDATE:
+			System.out.println("멤버update진입");
+			cmd.setSearch(request.getParameter("id"));
+			service.modify( service.findById(cmd));
+			DispatcherServlet.send(request, response);
+			break;
+		case Action.DELETE:
+			System.out.println("멤버delete진입");
+			//service.remove(request.getParameter("id"));
+			response.sendRedirect(request.getContextPath() + "/member.do?action=list&page=member_list&pageNumber=1");
+			break;
+		case Action.DETAIL:
+			System.out.println("멤버detail진입");
+			cmd.setSearch(request.getParameter("id"));
+			request.setAttribute("student", service.findById(cmd));
 			DispatcherServlet.send(request, response);
 			break;
 		}

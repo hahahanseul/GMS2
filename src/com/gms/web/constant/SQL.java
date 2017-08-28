@@ -16,7 +16,18 @@ public class SQL {
 	public static final String BOARD_UPDATE = String.format("UPDATE %s SET %s= ?, %s=? WHERE %s = ?",DB.TABLE_BOARD,DB.TITLE,DB.BOARD_CONTENT,DB.BOARD_SEQ);
 	public static final String BOARD_DELETE = String.format("DELETE FROM %s WHERE %s =?",DB.TABLE_BOARD,DB.BOARD_SEQ);
 	public static final String MAJOR_INSERT=String.format("INSERT INTO %s(%s,%s,%s,%s) VALUES(?,?,?,?)", DB.TABLE_MAJOR,DB.MAJOR_ID,DB.TITLE,DB.MEMBER_ID,DB.SUBJ_ID);
-	public static final String STUDENT_LIST=" select t.* "
-	+"	from(select rownum as rnum, s.* from student s)t "; 
-	public static final String LIST_PAGING=String.format("SELECT t.%s, t.%s, t.%s, t.%s, t.%s, t.%s, t.%s from(select rownum as rnum, s.* from %s s)t where t.rnum between 1 and 5",DB.NUM,DB.ID,DB.MEMBER_NAME, DB.MEMBER_SSN,DB.MEMBER_REGDATE,DB.PHONE,DB.EMAIL,DB.TITLE,DB.TABLE_STUDENT);
+	public static final String STUDENT_LIST = 	" SELECT t2.* "
+			+" FROM (SELECT ROWNUM seq, t.* "
+			+" FROM(SELECT * "
+			+" FROM student " 
+			+" ORDER BY num DESC) t)t2 "
+			+" WHERE t2.seq BETWEEN ? AND ? ";
+	public static final String STUDENT_FINDBYNAME =  " SELECT t2.* "
+	+" FROM (SELECT ROWNUM seq, t.* "
+	+" FROM(SELECT * "
+	+" FROM student " 
+	+" WHERE name LIKE '%'|| ? || '%' "
+	+" ORDER BY num DESC) t)t2 "
+	+" WHERE t2.seq BETWEEN ? AND ? ";
+	public static final String STUDENT_COUNT = String.format("SELECT COUNT(*) AS %s FROM %s","count",DB.TABLE_STUDENT );
 }

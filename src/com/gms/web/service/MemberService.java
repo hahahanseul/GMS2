@@ -1,18 +1,18 @@
 package com.gms.web.service;
 
 import java.util.List;
+import com.gms.web.command.Command;
 import java.util.Map;
-
 import com.gms.web.domain.MemberBean;
 
 public interface MemberService {
 	public String addMember(Map<String, Object> map);
-	public List<?> getMembers();
-	public List<?> findByNames(String name);
-	public MemberBean findById(String id);
-	public String countMembers();
+	public List<?> list(Command cmd);
+	public List<?> findByName(Command cmd);
+	public MemberBean findById(Command cmd);
+	public String countMembers(Command cmd);
 	public String modify(MemberBean member);
-	public String remove(String id);
+	public String remove(Command cmd);
 	public Map<String,Object> login(MemberBean member);
 	//MemberBean[] list=new MemberBean[4];
 }

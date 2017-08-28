@@ -3,9 +3,7 @@ package com.gms.web.service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.swing.plaf.synth.SynthSeparatorUI;
-
+import com.gms.web.command.Command;
 import com.gms.web.dao.MemberDAOImpl;
 import com.gms.web.domain.MajorBean;
 import com.gms.web.domain.MemberBean;
@@ -28,20 +26,20 @@ public class MemberServiceImpl implements MemberService {
 		return MemberDAOImpl.getInstance().insert(map);
 	}
 	@Override
-	public List<?> getMembers() {
-		return MemberDAOImpl.getInstance().selectAll();
+	public List<?> list(Command cmd) {
+		return MemberDAOImpl.getInstance().selectAll(cmd);
 	}
 	@Override
-	public String countMembers() {
-		return String.valueOf(MemberDAOImpl.getInstance().countMembers());
+	public String countMembers(Command cmd) {
+		return String.valueOf(MemberDAOImpl.getInstance().countMembers(cmd));
 	}
 	@Override
-	public List<?> findByNames(String name) {
-		return MemberDAOImpl.getInstance().selectByNames(name);
+	public List<?> findByName(Command cmd) {
+		return MemberDAOImpl.getInstance().selectByName(cmd);
 	}
 	@Override
-	public MemberBean findById(String id) {
-		return MemberDAOImpl.getInstance().selectById(id);
+	public MemberBean findById(Command cmd) {
+		return MemberDAOImpl.getInstance().selectById(cmd);
 	}
 
 	@Override
@@ -50,7 +48,7 @@ public class MemberServiceImpl implements MemberService {
 		return msg;	
 	}
 	@Override
-	public String remove(String id) {
+	public String remove(Command cmd) {
 		String msg="";
 		return msg;
 		
@@ -58,7 +56,9 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public Map<String,Object> login(MemberBean member) {
 		Map<String,Object> map = new HashMap<>();
-		MemberBean m = findById(member.getId());
+		Command cmd = new Command();
+		cmd.setSearch(member.getId());
+		MemberBean m = findById(cmd);
 		String page = (m != null) ?( (member.getPw().equals(m.getPw())) ? "main" :"login_fail") :  "join";
 		map.put("page", page);
 		map.put("user", m);
