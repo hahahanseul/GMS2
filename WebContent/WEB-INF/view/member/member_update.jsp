@@ -4,7 +4,6 @@
 	<jsp:include page="../common/navbar.jsp" />
 	<div class="jumbotron text-center">
 	<h1>Grade Management System</h1>
-	<a id="go_main" href="${ctx}/index.jsp">메인으로 가기</a><br>
 	</div>
 </header>
 		<div class="container" style="width:60%">

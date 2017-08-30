@@ -62,6 +62,11 @@ public class MemberServiceImpl implements MemberService {
 		cmd.setSearch(member.getId());
 		MemberBean m = MemberDAOImpl.getInstance().login(cmd);
 		String page = (m != null) ?( (member.getPw().equals(m.getPw())) ? "main" :"login_fail") :  "join";
+		if(page.equals("main")) {
+			System.out.println("로그인성공");
+		}else {
+			System.out.println("로그인실패");
+		}
 		map.put("page", page);
 		map.put("user", m);
 		return map;

@@ -6,6 +6,8 @@
 <title>로그인</title>
 <link rel="stylesheet" href="${ctx}/resources/css/member.css" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="${js}/member.js"></script>
 </head>
 <body>
 <div id="wrapper">
@@ -23,8 +25,8 @@
 			<span id="login_pass">PASSWORD</span>
 			<input type="text" id="login_pw" name="login_pw"/><br>
 			<div id="login_btn_box">
-				<input id="login_btn" type="submit" value="LOGIN" onclick="loginAlert()"></input>
-				<input id="cancel_btn" type="reset" value="CANCEL"></input>
+				<input id="loginBtn" type="submit" value="LOGIN"></input>
+				<input id="cancelBtn" type="reset" value="CANCEL"></input>
 			</div>
 			<input type="hidden" name="page" value="main"/>
 			<input type="hidden" name="action" value="login"/>
@@ -38,23 +40,8 @@
 	 		<a href="${ctx}/util/update_email.jsp">이메일 업데이트</a>
 		</div>
 	</footer>
-<script type="text/javascript">
-function loginAlert(){
-	var input_id=document.getElementById('login_id').value;
-	var input_pass=document.getElementById('login_pw').value;
-	if(input_id === ""){
-		alert('ID구다사이');
-		return false;
-	}
-	if(input_pass === ""){
-		alert('password구다사이');
-		return false;
-	}
-	var form = document.getElementById('login_form');
-	form.action="${ctx}/common.do";
-	form.method="post";
-	return true;
-}
-</script>
 </body>
+<script>
+member.init();
+</script>
 </html>

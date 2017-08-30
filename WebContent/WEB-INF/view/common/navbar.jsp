@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -95,12 +96,12 @@ function list(dir,page,pageNumber){
 	location.href="${ctx}/"+dir+".do?action=list&page="+page+"&pageNumber=" + pageNumber;
 }
 function mainLoad(){
-	var u1=$("#main_ul_stu");
-	var u2=$("#main_ul_grade");
-	var u3=$("#main_ul_board");
-	u1.setAttribute('class',"list-group");
-	u2.setAttribute('class',"list-group");
-	u3.setAttribute('class',"list-group");
+	var u1=document.getElementById("main_ul_stu");
+	var u2=document.getElementById("main_ul_grade");
+	var u3=document.getElementById("main_ul_board");
+	u1.setAttribute("class","list-group");
+	u2.setAttribute("class","list-group");
+	u3.setAttribute("class","list-group");
 	var u1c=u1.children;
 	var u2c=u2.children;
 	var u3c=u3.children;

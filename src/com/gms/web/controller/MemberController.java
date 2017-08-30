@@ -79,8 +79,6 @@ public class MemberController extends HttpServlet {
 		default:System.out.println("FAIL..");break;
 		case Action.LIST:
 			System.out.println("MemberController <list> 진입");
-			cmd.setColumn(String.valueOf(map.get("column")));
-			cmd.setSearch(String.valueOf(map.get("search")));
 			pxy.setTheNumberOfRows(Integer.parseInt(service.countMembers(cmd)));
 			pxy.setPageNumber(Integer.parseInt(request.getParameter("pageNumber")));
 			pxy.execute(BlockHandler.attr(pxy),service.list(PageHandler.attr(pxy)));
