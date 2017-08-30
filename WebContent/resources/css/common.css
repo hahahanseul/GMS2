@@ -5,7 +5,6 @@ table{border-collapse: collapse;}
 #wrapper{width:100%;min-height:100%;position:relative;padding-bottom:150px;}
 #go_main, #db_tester{float:right; padding-right:30px;}
 #title{text-align: center;}
-#container{width:90%; padding:20px 0px;margin:0 auto; position:relative;}
 #clock{text-align:center; color: red; font-size: 20px; padding: 20px 0px;}
 #footer-box{padding:20px 50px;}
 .gms-text-center{text-align: center;}

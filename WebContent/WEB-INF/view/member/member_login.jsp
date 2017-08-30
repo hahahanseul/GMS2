@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="../common/common_head.jsp" />
+<header>
+	<jsp:include page="${ctx}/WEB-INF/view/common/navbar.jsp" />
+	<div class="jumbotron text-center">
+	<h1>Grade Management System</h1>
+	</div>
+</header>
 	<div id="container" class="margin-auto" style="width:400px">
 	<form action="">
 	<fieldset>

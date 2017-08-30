@@ -1,7 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %>
 <jsp:include page="common_head.jsp" />
-
+<header>
+	<jsp:include page="navbar.jsp" />
+	<div class="jumbotron text-center">
+	<h1>Grade Management System</h1>
+	</div>
+</header>
 <div id ="container">
 	<div class="row">
 		<div class="col-sm-4">

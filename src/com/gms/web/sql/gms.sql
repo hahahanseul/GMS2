@@ -275,3 +275,8 @@ FROM (SELECT ROWNUM seq, t.*
 	WHERE name LIKE '%홍%'
 	ORDER BY num DESC) t)t2
 WHERE t2.seq BETWEEN 1 AND 5;
+
+SELECT * FROM Student
+WHERE name like '%%';
+
+SELECT COUNT(*) AS count FROM student WHERE name like '%';

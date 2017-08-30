@@ -2,13 +2,20 @@
 <%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="../common/common_head.jsp" />
+<header>
+	<jsp:include page="../common/navbar.jsp" />
+	<div class="jumbotron text-center">
+	<h1>Grade Management System</h1>
+	<a id="go_main" href="${ctx}/index.jsp">메인으로 가기</a><br>
+	</div>
+</header>
 <div id="container">
 <div class="row">
   <div class="col-lg-4" style="margin:0 400px 20px 400px;">
     <div class="input-group">
       <input id="search" name="search" type="text" class="form-control" placeholder="Search for...">
       <span class="input-group-btn">
-        <button onclick="search()" class="btn btn-default" type="button">Search!</button>
+        <button onclick="searchStudent()" class="btn btn-default" type="button">Search!</button>
       </span>
     </div><!-- /input-group -->
   </div>
@@ -73,27 +80,4 @@
 	  </ul>
 	</nav>
 	</div>
-<script>
-function search(){
-	var search=document.getElementById('search').value;
-	if(search === ""){
-		alert('검색어를 입력하세요');
-		return false;
-	}
-	alert('입력한 검색어:::::   ' + search);
-	location.href="${ctx}/member.do?action=search&page=member_search&search="+search;
-};
-function updateStudent(id){
-	alert('수정할 ID는 ' + id);
-	location.href="${ctx}/member.do?action=update&page=member_update&id=" +id;
-}
-function deleteStudent(id){
-	alert('삭제할 ID는 ' + id);
-	location.href="${ctx}/member.do?action=delete&page=member_list" ;
-}
-function detailStudent(id){
-	alert('조회할 ID는 ' + id);
-	location.href="${ctx}/member.do?action=detail&page=member_detail&id=" +id;
-}
-</script>
 <jsp:include page="../common/footer.jsp" />

@@ -40,7 +40,7 @@
      	</ul> 
      </li>
     </ul>
-    <span class="login-member">${sessionScope.user.name}&nbsp;<a id="logout">로그아웃</a></span>
+    <span class="login-member">${sessionScope.user.name}&nbsp;<a id="logout")>로그아웃</a></span>
   </div>
 </nav>
 <script>
@@ -79,7 +79,7 @@ function navbarLoad(){
 	u3c[3].setAttribute("class","divider");
 	u3c[4].setAttribute("onclick","deleteTarget('board')");
 	var logout=document.getElementById("logout");
-	logout.setAttribute("onclick","logout('common','index')")
+	logout.setAttribute("onclick","logout('common','home')")
 }
 
 function logout(dir, page){
@@ -95,12 +95,12 @@ function list(dir,page,pageNumber){
 	location.href="${ctx}/"+dir+".do?action=list&page="+page+"&pageNumber=" + pageNumber;
 }
 function mainLoad(){
-	var u1=document.getElementById("main_ul_stu");
-	var u2=document.getElementById("main_ul_grade");
-	var u3=document.getElementById("main_ul_board");
-	u1.setAttribute("class","list-group");
-	u2.setAttribute("class","list-group");
-	u3.setAttribute("class","list-group");
+	var u1=$("#main_ul_stu");
+	var u2=$("#main_ul_grade");
+	var u3=$("#main_ul_board");
+	u1.setAttribute('class',"list-group");
+	u2.setAttribute('class',"list-group");
+	u3.setAttribute('class',"list-group");
 	var u1c=u1.children;
 	var u2c=u2.children;
 	var u3c=u3.children;
@@ -131,5 +131,48 @@ function mainLoad(){
 	u3c[2].setAttribute("onclick","moveTo('board','board_detail')");
 	u3c[3].setAttribute("onclick","moveTo('board','board_update')");
 	u3c[4].setAttribute("onclick","deleteTarget('board')");
+}
+function searchStudent(){
+	var search=document.getElementById('search').value;
+	if(search === ""){
+		alert('검색어를 입력하세요');
+		return false;
+	}
+	alert('입력한 검색어:::::   ' + search);
+	location.href="${ctx}/member.do?action=search&page=member_list&search="+search;
+};
+function updateStudent(id){
+	alert('수정할 ID는 ' + id);
+	location.href="${ctx}/member.do?action=update&page=member_update&id=" +id;
+}
+function deleteStudent(id){
+	alert('삭제할 ID는 ' + id);
+	location.href="${ctx}/member.do?action=delete&page=member_list" ;
+}
+function detailStudent(id){
+	alert('조회할 id'+id);
+	location.href="${ctx}/member.do?action=detail&page=member_detail&id="+id;
+}
+function studentInfo(){
+	var id = 'id',
+		id_val='${requestScope.student.id}',
+		name ='name',
+		name_val='${requestScope.student.name}',
+		email='email',
+		email_val='${requestScope.student.email}';
+		
+	sessionStorage.setItem(id,id_val);
+	sessionStorage.setItem(name,name_val);
+	sessionStorage.setItem(email,email_val);
+}
+function memberAdd(){
+	var form = getElementById('join_form');
+	form.setAttribute('action', '${ctx}/member.do');
+	form.setAttribute('method', 'post');
+	form.submit();
+	return true;
+}
+function cancel(){
+	location.href="${ctx}/WEB-INFO/view/member/member_list.jsp?action=list";
 }
 </script>

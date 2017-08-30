@@ -1,56 +1,87 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="../common/common_head.jsp" />
-<div id="container">
-	<div id="member_box">
-		<div id="member_detail_title">회원정보 상세조회 </div>
-		<form action="<%=request.getContextPath()%>/member/service_update.jsp">
-			<table id="member_detail_tab">
-				<tr>
-					<td colspan="2" rowspan="3"><img id="member_img" src="<%=request.getContextPath()%>/img/" alt="" /></td>
-					<td class="content_title">이름</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td class="content_title">ID</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td class="content_title">주민등록번호</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td class="content_title">휴대전화</td>
-					<td colspan="3"><input type="text" name="phone" placeholder=""/></td>
-				</tr>
-				<tr>
-					<td class="content_title">이메일</td>
-					<td colspan="3"><input type="email" name="email" placeholder=""/></td>
-				</tr>
-				<tr>
-					<td class="content_title">학점</td>
-					<td colspan="3"></td>
-				</tr>
-				<tr>
-					<td class="content_title">전공</td>
-					<td colspan="3"><input type="text" name="major" placeholder=""></td>
-				</tr>
-				<tr>
-					<td class="content_title">등록일</td>
-					<td colspan="3"></td>
-				</tr>
-			</table>
-		<div id="member_btn_box">
-			<input type="submit" id="confirm_btn" value="수정"/>
-			<input type="button"id="cancel_btn" value="취소" onclick="javascript:cancel()">
-		</div>
-		<input type="hidden" name="id" value=""/>
-		</form>
-	
+<header>
+	<jsp:include page="../common/navbar.jsp" />
+	<div class="jumbotron text-center">
+	<h1>Grade Management System</h1>
+	<a id="go_main" href="${ctx}/index.jsp">메인으로 가기</a><br>
 	</div>
-</div>
-<script>
-function cancel(){
-	location.href="${ctx}/WEB-INFO/view/member/member_list.jsp?action=list";
-}
-</script>
+</header>
+		<div class="container" style="width:60%">
+			<div class="row main">
+				<div class="panel-heading">
+	               <div class="panel-title text-center">
+	               		<h1 class="title">${requestScope.student.name}</h1>
+	               		<hr />
+	               	</div>
+	            </div> 
+				<div class="main-login main-center">
+					<form class="form-horizontal" method="post" action="#">
+						<div class="form-group">
+							<label for="name" class="cols-sm-2 control-label">Name</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="name" id="name"  placeholder="Steve Jobs"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="email" class="cols-sm-2 control-label">Email</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="email" id="email"  placeholder="user@example.com"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="username" class="cols-sm-2 control-label">Username</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="username" id="username"  placeholder="Enter your Username"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="password" class="cols-sm-2 control-label">Password</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+									<input type="password" class="form-control" name="password" id="password" data-toggle="popover" placeholder="Enter your Password"/>
+								</div>
+								<span id="passwordInfo" class="hide">
+								    <ul>
+								        <li>At least 6 characters.</li>
+								        <li>Use of special Characters like, [@, $].</li>
+								        <li>Use of uppercase [A – Z] and lowercase [a – z] letters.</li>
+								        <li>Use of numbers [0 – 9].</li>
+								    </ul>
+								</span>
+								<span id="result"></span>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+									<input type="password" class="form-control" name="confirm" id="confirm"  placeholder="Confirm your Password"/>
+								</div>
+								<span id="confirmPass"></span>
+							</div>
+						</div>
+
+						<div class="form-group ">
+							<button type="button" class="btn btn-primary btn-lg btn-block login-button">UPDATE</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
 <jsp:include page="../common/footer.jsp" />

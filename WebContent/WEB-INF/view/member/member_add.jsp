@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="../common/common_head.jsp" />
+<header>
+	<jsp:include page="../common/navbar.jsp" />
+	<div class="jumbotron text-center">
+	<h1>Grade Management System</h1>
+	<a id="go_main" href="${ctx}/index.jsp">메인으로 가기</a><br>
+	</div>
+</header>
 	<div id="container">
 		<div id="sub_title">회원 추가 </div>
 		<form id="join_form" onsubmit="memberAdd()">
@@ -41,12 +48,5 @@
 		</form>
 	</div>
 <script>
-function memberAdd(){
-	var form = getElementById('join_form');
-	form.setAttribute('action', '${ctx}/member.do');
-	form.setAttribute('method', 'post');
-	form.submit();
-	return true;
-}
 </script>
 <jsp:include page="../common/footer.jsp" />

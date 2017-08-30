@@ -22,12 +22,15 @@ public class SQL {
 			+" FROM student " 
 			+" ORDER BY num DESC) t)t2 "
 			+" WHERE t2.seq BETWEEN ? AND ? ";
-	public static final String STUDENT_FINDBYNAME =  " SELECT t2.* "
+	public static final String STUDENT_FINDBYNAME = String.format("SELECT * FROM Student WHERE %s like ?", "name");
+	/*		" SELECT t2.* "
 	+" FROM (SELECT ROWNUM seq, t.* "
 	+" FROM(SELECT * "
 	+" FROM student " 
 	+" WHERE name LIKE '%'|| ? || '%' "
 	+" ORDER BY num DESC) t)t2 "
-	+" WHERE t2.seq BETWEEN ? AND ? ";
-	public static final String STUDENT_COUNT = String.format("SELECT COUNT(*) AS %s FROM %s","count",DB.TABLE_STUDENT );
+	+" WHERE t2.seq BETWEEN ? AND ? "; */
+	public static final String STUDENT_COUNT = String.format("SELECT COUNT(*) AS count FROM %s WHERE %s like ?",DB.TABLE_STUDENT, "name");
+	public static final String STUDENT_FINDBYID= (String.format("SELECT * FROM %s WHERE id like ?", DB.TABLE_STUDENT));
+	
 }

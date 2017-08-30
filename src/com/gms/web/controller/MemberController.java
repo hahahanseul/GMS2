@@ -78,7 +78,9 @@ public class MemberController extends HttpServlet {
 			break;
 		default:System.out.println("FAIL..");break;
 		case Action.LIST:
-			System.out.println("멤버리스트 진입");
+			System.out.println("MemberController <list> 진입");
+			cmd.setColumn(String.valueOf(map.get("column")));
+			cmd.setSearch(String.valueOf(map.get("search")));
 			pxy.setTheNumberOfRows(Integer.parseInt(service.countMembers(cmd)));
 			pxy.setPageNumber(Integer.parseInt(request.getParameter("pageNumber")));
 			pxy.execute(BlockHandler.attr(pxy),service.list(PageHandler.attr(pxy)));
@@ -86,17 +88,21 @@ public class MemberController extends HttpServlet {
 			break;
 		case Action.SEARCH:
 			map=ParamsIterator.execute(request);
-			pxy.setTheNumberOfRows(Integer.parseInt(service.countMembers(cmd)));
 			cmd=PageHandler.attr(pxy);
-			cmd.setColumn("name");
+			cmd.setPageNumber(request.getParameter("pageNumber"));
+			cmd.setColumn(String.valueOf(map.get("column")));
 			cmd.setSearch(String.valueOf(map.get("search")));
-			request.setAttribute("list", service.findByName(cmd));
+			cmd.setStartRow(PageHandler.attr(pxy).getStartRow());
+			cmd.setEndRow(PageHandler.attr(pxy).getEndRow());
+			pxy.setTheNumberOfRows(Integer.parseInt(service.countMembers(cmd)));
+			pxy.setPageNumber(Integer.parseInt(cmd.getPageNumber()));
+			pxy.execute(BlockHandler.attr(pxy),service.findByName(cmd));
 			DispatcherServlet.send(request, response);
 			break;
 		case Action.UPDATE:
 			System.out.println("멤버update진입");
 			cmd.setSearch(request.getParameter("id"));
-			service.modify( service.findById(cmd));
+			//service.modify( service.findById(cmd));
 			DispatcherServlet.send(request, response);
 			break;
 		case Action.DELETE:

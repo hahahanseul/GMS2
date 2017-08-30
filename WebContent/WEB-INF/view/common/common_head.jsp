@@ -11,10 +11,5 @@
 </head>
 <body>
 <div id="wrapper">
-	<header>
-		<jsp:include page="navbar.jsp" />
-		<div class="jumbotron text-center">
-	<h1>Grade Management System</h1>
-</div>
-	</header>
+
 	
